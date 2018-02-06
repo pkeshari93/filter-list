@@ -3,15 +3,128 @@
 <head>
 	<meta charset="UTF-8">
 	<title>My Contacts</title>
-	<meta name="viewport" content="width=device-width, intial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 	<meta http-equiv='X-UA-Compatible' content="ie=edge">
+	<!-- Materialize CSS framework -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
 </head>
 <body>
 	<div class="container">
-		<h1 class="align-center">
+		<h1 class="center-align">
 			My Contacts
 		</h1>
+		<input  type="text" id="filterInput" placeholder="Search name...">
+		<!-- using collection for materialize which is like a list  group in Bootstrap, just a fancy way of styling ul -->
+		<ul id="names" class="collection with-header">
+			<li class="collection-header">
+				<h5>A</h5>
+			</li>
+			<li class="collection-item">
+				<a href="#">Abe</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Abhinav</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Adam</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Alan</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Anne</a>
+			</li>
+
+			<li class="collection-header">
+				<h5>B</h5>
+			</li>
+			<li class="collection-item">
+				<a href="#">Brett</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Broham</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Broski</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Broda</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Bhai</a>
+			</li>
+
+			<li class="collection-header">
+				<h5>C</h5>
+			</li>
+			<li class="collection-item">
+				<a href="#">Charlie</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Chad</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Clayton</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Carrie</a>
+			</li>
+			<li class="collection-item">
+				<a href="#">Courtney</a>
+			</li>
+		</ul>
 	</div>
+
+	<footer>
+		<script>
+			// get input element
+			let filterInput = document.getElementById('filterInput');
+
+			// add event listener
+			filterInput.addEventListener('keyup', filterNames);
+
+			function filterNames(){
+				// get the value of the input
+				let filterValue = document.getElementById('filterInput').value.toUpperCase();
+				console.log(filterValue);
+				// get names ul
+				let ul = document.getElementById('names');
+
+				// get lis from ul into an array, using selector func to get li based on class names
+				let li = ul.querySelectorAll('li.collection-item');
+
+				// loop through li array
+				for(let i = 0; i < li.length; i++){
+					// using getElementsByTagName to get a tag elements
+					let a = li[i].getElementsByTagName('a')[0];
+					// if matched, grabbing names from a tag with innerHTML for comaprison
+					if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+						li[i].style.display = '';
+					}else{
+						li[i].style.display = 'none';
+					}
+				}
+			}
+
+
+		</script>
+	</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
